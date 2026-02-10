@@ -7,6 +7,11 @@ import br.com.alura.screenmatch.calculos.Classificavel;
 public class Filme extends Titulo implements Classificavel {
     private String diretor;
 
+    // construtor: metodo que tem como função a criação de um objeto na memória
+    public Filme(String nome) {
+        this.setNome(nome);
+    }
+
     public String getDiretor() {
         return diretor;
     }
@@ -18,6 +23,13 @@ public class Filme extends Titulo implements Classificavel {
     @Override
     public int getClassificacao() {
         return (int) pegaMedia() / 2;
+    }
+
+    @Override
+    public String toString() {
+        // super = o que a mãe devolve
+        // return super.toString();
+        return "Filme: " + this.getNome() + " (" + this.getAnoDeLancamento() + ")";
     }
 }
 

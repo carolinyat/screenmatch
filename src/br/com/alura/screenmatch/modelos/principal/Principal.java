@@ -1,9 +1,12 @@
 package br.com.alura.screenmatch.modelos.principal;
+
 import br.com.alura.screenmatch.calculos.CalculadoraDeTempo;
 import br.com.alura.screenmatch.calculos.FiltroRecomendacao;
 import br.com.alura.screenmatch.modelos.Episodio;
 import br.com.alura.screenmatch.modelos.Filme;
 import br.com.alura.screenmatch.modelos.Serie;
+
+import java.util.ArrayList;
 
 public class Principal {
     public static void main(String[] args) {
@@ -12,8 +15,11 @@ public class Principal {
         // e na esquerda estamos a informar a necessidade de uma variável
         // que saiba referenciar um objeto do tipo br.com.alura.screenmatch.modelos.Filme
 
-        Filme meuFilme = new Filme();
-        meuFilme.setNome("Send Help");
+        // A palavra new cria um objeto na memória e invoca o construtor.
+        // Vale lembrar que o construtor não é um metodo
+
+        Filme meuFilme = new Filme("Send Help");
+        // meuFilme.setNome("Send Help");
         meuFilme.setAnoDeLancamento(2026);
         meuFilme.setDuracaoEmMinutos(133);
         meuFilme.setIncluidoNoPlano(false);
@@ -64,5 +70,30 @@ public class Principal {
         FiltroRecomendacao filtro = new FiltroRecomendacao();
         filtro.filtra(meuFilme);
         filtro.filtra(episodio);
+
+        // à esquerda, variável referência; à direita, cria o objeto e guarda a referência na variável filme. Podemos substituir 'Filme' por 'var'
+        // é feito uma inferência do tipo, não se faz necessário dizer que é um filme
+        var liveActionFilme = new Filme("Como Treinar Seu Dragão");
+        // liveActionFilme.setNome("Como Treinar Seu Dragão");
+        liveActionFilme.setAnoDeLancamento(2025);
+
+        var suspenseFilme = new Filme("A Empregada");
+        // suspenseFilme.setNome("A Empregada");
+        suspenseFilme.setAnoDeLancamento(2026);
+
+        // ou var listaDeFilmes = new ArrayList<>();
+        ArrayList<Filme> listaDeFilmes = new ArrayList<>();
+        listaDeFilmes.add(meuFilme);
+        listaDeFilmes.add(liveActionFilme);
+        listaDeFilmes.add(suspenseFilme);
+
+        System.out.println("Tamanho da lista: " + listaDeFilmes.size());
+        System.out.println("Primeiro filme da lista: " + listaDeFilmes.getFirst().getNome());
+
+        System.out.println(listaDeFilmes);
+
+        System.out.println("toString do filme: " + listaDeFilmes.getFirst().toString());
+
+        suspenseFilme.toString();
     }
 }

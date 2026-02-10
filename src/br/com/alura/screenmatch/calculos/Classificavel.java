@@ -7,6 +7,6 @@ public interface Classificavel {
     int getClassificacao();
 }
 
-// Interfaces podem ser utilizadas para definir comportamentos
+// ‘Interfaces’ podem ser utilizadas para definir comportamentos
 // que podem ser aplicados a várias classes diferentes, tornando
 // assim o código mais modular e fácil de manter.
