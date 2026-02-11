@@ -8,9 +8,17 @@ public class Filme extends Titulo implements Classificavel {
     private String diretor;
 
     // construtor: metodo que tem como função a criação de um objeto na memória
-    public Filme(String nome) {
-        this.setNome(nome);
+
+    // Quando uma classe é definida, ela pode ter um ou mais construtores,
+    // sendo que se nenhum construtor for definido explicitamente, o Java criará
+    // um construtor default automaticamente (não possui parâmetros e não executa nenhuma instrução)
+    public Filme(String nome, int anoDeLancamento) {
+        super(nome, anoDeLancamento);
     }
+
+    // Se uma classe define explicitamente um ou mais construtores, mas não define um construtor sem
+    // parâmetros, então não há construtor default. Nesse caso, se um objeto é criado sem argumentos,
+    // um erro de compilação será gerado
 
     public String getDiretor() {
         return diretor;
