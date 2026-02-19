@@ -1,8 +1,12 @@
 // src > br.com.alura.screenmatch.modelos > Titulo.java
 
 package br.com.alura.screenmatch.modelos;
+import br.com.alura.screenmatch.excecao.ErroDeConversaoDeAnoException;
 
 // Classe Mãe, superclasse e parent class são termos comuns para se referir à classe que estamos a estender
+
+// implemente comparable de título. assino o contrato e implemento
+// você promete que é comparável, mas cade o metodo que a interface obriga?
 public class Titulo implements Comparable<Titulo> {
     private String nome;
     private int anoDeLancamento;
@@ -14,6 +18,19 @@ public class Titulo implements Comparable<Titulo> {
     public Titulo(String nome, int anoDeLancamento) {
         this.nome = nome;
         this.anoDeLancamento = anoDeLancamento;
+    }
+
+    public Titulo(TituloOmdb meuTituloOmdb) {
+        this.nome = meuTituloOmdb.title();
+
+        if (meuTituloOmdb.year().length() > 4) {
+            throw new ErroDeConversaoDeAnoException("Não consegui converter o ano " +
+                    "porque tem mais de 04 caracteres.");
+        }
+
+        this.anoDeLancamento = Integer.parseInt(meuTituloOmdb.year());
+        this.duracaoEmMinutos =
+                Integer.parseInt(meuTituloOmdb.runtime().split(" ")[0]);
     }
 
     public String getNome() {
@@ -67,7 +84,16 @@ public class Titulo implements Comparable<Titulo> {
     }
 
     @Override
+    // comparar esse titulo com outro título
     public int compareTo(Titulo outroTitulo) {
+        // usa compareTo da String, já que estamos a comparar nomes
         return this.getNome().compareTo(outroTitulo.getNome());
+    }
+
+    @Override
+    public String toString() {
+        // super = o que a mãe devolve
+        // return super.toString();
+        return "Título: " + this.getNome() + " (" + this.getAnoDeLancamento() + ")";
     }
 }
